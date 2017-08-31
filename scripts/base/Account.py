@@ -21,10 +21,7 @@ class Account(KBEngine.Proxy):
 		self.activeAvatar = None
 
 		self.relogin = time.time()
-		
-		
-		
-
+	
 	def reqAvatarList(self):
 		"""
 		exposed.
