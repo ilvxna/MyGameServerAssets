@@ -8,16 +8,18 @@ class ActivityData:
 
 		self.activityReward = {}
 
-#--    local tmp = _readXml('/data/xml/ActivityReward.xml', 'id_i')
-#--    for _, v in pairs(tmp) do
 		self.activityReward = py_util._readXml('/data/xml/ActivityReward.xml', 'id_i')
+	
 	def getActivityTime(self,weekday):
 		return self.activityTime[weekday] or {}
+
 	def getActivityLevel(self,ActivityId):
 		activity = self.activities[ActivityId] or {}
 		return activity['level']
+
 	def getActivity(Aself,ctivityId):
 		return self.activities[ActivityId]
+	
 	#根据波数和玩家等级获取
 	def getTowerDefenceReward(self,wave, level):
 	 for _, v in self.activityReward.items():
