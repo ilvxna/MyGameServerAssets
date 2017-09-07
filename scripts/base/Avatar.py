@@ -148,6 +148,7 @@ class Avatar(KBEngine.Proxy,
 			
 				
 	def useItemRequest(self, itemIndex):
+		
 		itemUUId = self.inventory.getItemUidByIndex(itemIndex)
 		item = items.getItem(self.itemList[itemUUId][1])
 		item.use(self)

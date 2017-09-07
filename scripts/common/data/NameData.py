@@ -45,8 +45,9 @@ class NameDataMgr:
         DEBUG_MSG("NameDataMgr:initData over.")
 
     def InitByDB(self,used_names):
-#--组合名字
-#	--西方,姓在后
+        #used_name is dict
+    #--组合名字
+    #	--西方,姓在后
         for _,lastname in self.OccidentalLast.items():
             #女生名字
             for _,femalname in self.OccidentalFemale.items():
@@ -180,7 +181,7 @@ class NameDataMgr:
         return t
     def RecoverName(self,name):
         self.cute.append(name)
-        
+
 
             
 

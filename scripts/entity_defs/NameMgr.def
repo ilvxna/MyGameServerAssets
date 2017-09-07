@@ -1,0 +1,65 @@
+<root>
+
+<Properties>
+    <!---->
+   
+    <!--
+    大概是这样一个列表字典
+       = {“values": [
+              {"itemID" : 1, itemCount : 12},
+              {"itemID" : 2, itemCount : 11},
+              ...
+              ...
+         ]}
+         服务器端就是一个name字典的list
+         -->
+    <usingPool>
+        <Type> NAME_INFO_LIST </Type>
+        <Flags> BASE </Flags>
+    </usingPool>
+    
+</Properties>
+
+<ClientMethods>
+
+</ClientMethods>
+
+<BaseMethods>
+    
+    <onAvatarSelectResp>
+        <Arg> NAME_INFO_LIST</Arg>
+    </onAvatarSelectResp>
+    
+    <!--GetRandomName(accountName, vocation, mbStr)-->
+    <GetRandomName>
+        <Arg> STRING </Arg>
+        <Arg> UINT8 </Arg>
+        <Arg> STRING </Arg>
+    </GetRandomName>
+    <!--SendName(tableP, ret)-->
+    <SendName>
+        <Arg> LUA_TABLE </Arg>
+        <Arg> UINT8 </Arg>
+    </SendName>
+
+    <OnInited>
+        <Arg> NAME_INFO_LIST </Arg>
+    </OnInited>
+
+    <UseName>
+        <Arg> STRING </Arg>
+        <Arg> STRING </Arg>
+    </UseName>
+    <UnuseName>
+        <Arg> STRING </Arg>
+    </UnuseName>
+    <random_n_names>
+        <Arg> UINT8 </Arg>
+    </random_n_names>
+    <RecoverName>
+        <Arg> STRING </Arg>
+    </RecoverName>
+</BaseMethods>
+
+
+</root>

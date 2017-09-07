@@ -46,7 +46,13 @@
 			</level>
 		</Properties>
 	</AVATAR_INFO>
-	
+	<NAME_INFO> FIXED_DICT
+	<Properties>
+		<name>
+			<Type> UNICODE </Type>
+		</name>
+	</Properties>
+	</NAME_INFO>
 	<AVATAR_INFO_LIST> FIXED_DICT
 		<implementedBy>AVATAR_INFO.avatar_info_list_inst</implementedBy>
 		<Properties>
@@ -57,6 +63,17 @@
 			</values>
 		</Properties>
 	</AVATAR_INFO_LIST>
+	<NAME_INFO_LIST> FIXED_DICT
+		
+	
+	<Properties>
+		<values>
+			<Type>  ARRAY 					
+				<of>NAME_INFO</of>
+			</Type>
+		</values>
+	</Properties>
+	</NAME_INFO_LIST>
 	
 	<ITEM_INFO>  FIXED_DICT
         <implementedBy>ITEM_INFO.item_info_inst</implementedBy>
