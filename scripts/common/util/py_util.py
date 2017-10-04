@@ -193,7 +193,7 @@ def format_xml_table(t):
 		
 			t2[k]=v2
 	return t2
-PATH=r"scripts\data\%s.xml"
+PATH=r"scripts\data\%s"
 
 #读取xml文件
 def _readXml(path,key):
@@ -204,7 +204,7 @@ def _readXml(path,key):
 
 	key_path=('./'+path.title())
 	p=tree.findall(key_path)
-	#ToDo 这儿意味着XML文件的关键字与路径有关系，因此需要处理XML与路径的不一致的问题。
+	# 这儿意味着XML文件的关键字与路径有关系，因此需要处理XML与路径的不一致的问题。
 	#将XML
 	d={}
 	for v in p:
@@ -218,9 +218,69 @@ def _readXml(path,key):
 	d=format_xml_table(e)
 	
 
-	print(d)
-	return d
+	e={}
+	for i,j in d.items():
+		e[i]={}
+		for key,value in  j.items():
+			prefix=key[-2:]
+			key2=key[:-2]
+			if prefix=='_i' :
+				e[i][key2]=int(value)
+			elif prefix=='_f':
+				e[i][key2]=int(value)
+			elif prefix=='_s':
+				if type(value)==int:
+					e[i][key2]=int(value)
+				else:
+					e[i][key2]=value
 
+			elif prefix=='_l':
+				#list
+				s=value.split(',')
+				t=[]
+				for k,v in enumerate(s):
+					if type(v)==int:
+						t.append(int(v))
+					else:
+						t.append(float(v))
+				e[i][key2]=t
+
+			elif prefix=='_k':
+				tmp=value.split(',')
+				tmp2={}
+				for _,k in enumerate(tmp):
+					tmp2[k]=1
+				#return[key2,tmp2]
+				e[i][key2]=tmp2
+			elif prefix=='_t':	
+				tmp=value.split(":")
+				sec=0
+				for i,v in enumerate(tmp):
+					t=int(v)
+					if t:
+						sec=t+sec*60
+				e[i][key2]=sec
+
+			elif prefix=='_y':
+				e[i][key2]= time.mktime(time.strptime(value, '%Y-%m-%d %X'))
+			elif prefix=='_m':
+				tmp=value.split(',')
+				tmp2={}
+				for _,v in enumerate(tmp):
+					tp=v.split(':')
+					id=str(tp[0])
+					if type(tp[1])==int:
+						num=int(tp[1]) or tp[1]
+					else:
+						num=tp[1]
+					tmp2[id]=num
+				e[i][key2]=tmp2
+			else:
+				if type(value)==int:
+					e[i][key2]=int(value)
+				else:
+					e[i][key2]=value
+	return e
 #--根据两个关键字来读xml文件,例如科技表根据科技id和科技等级来决定相关的数据
 #--注意,这里的key和key2不能带后缀
 def _readXmlBy2Key(path,key1,key2):

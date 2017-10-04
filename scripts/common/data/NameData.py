@@ -1,6 +1,7 @@
 import py_util
 from KBEDebug import *
-import public_config
+#import public_config
+from config import public_config
 import math
 import random
 Spliter=''
@@ -13,20 +14,19 @@ nameType=dict(
     orie_male = 5, #东方
     )
 
-    vocation2Gender = dict(
-	[public_config.VOC_WARRIOR] = public_config.GENDER_MALE,
-	[public_config.VOC_ASSASSIN] = public_config.GENDER_FEMALE,
-	[public_config.VOC_ARCHER] = public_config.GENDER_MALE,
-	[public_config.VOC_MAGE] = public_config.GENDER_FEMALE,
-)
+vocation2Gender ={
+	public_config.VOC_WARRIOR: public_config.GENDER_MALE,
+	public_config.VOC_ASSASSIN: public_config.GENDER_FEMALE,
+	public_config.VOC_ARCHER: public_config.GENDER_MALE,
+	public_config.VOC_MAGE: public_config.GENDER_FEMALE,
+		}
 
 class NameDataMgr:
-    def __init__(self):
-         DEBUG_MSG("NameDataMgr:initData begin")
-
-        self.OccidentalLast  = py_util._readXml("/data/xml/NameOccidentalLast.xml", "id_i")
-        self.OccidentalFemale = py_util._readXml("/data/xml/NameOccidentalFemale.xml", "id_i")
-        self.OccidentalMale = py_util._readXml("/data/xml/NameOccidentalMale.xml", "id_i")
+	def __init__(self):
+		DEBUG_MSG("NameDataMgr:initData begin")
+		self.OccidentalLast  = py_util._readXml("/data/xml/NameOccidentalLast.xml", "id_i")
+		self.OccidentalFemale = py_util._readXml("/data/xml/NameOccidentalFemale.xml", "id_i")
+		self.OccidentalMale = py_util._readXml("/data/xml/NameOccidentalMale.xml", "id_i")
 
         self.CuteFirst = py_util._readXml("/data/xml/NameCuteFirst.xml", "id_i")
         self.CuteLast = py_util._readXml("/data/xml/NameCuteLast.xml", "id_i")
@@ -44,20 +44,20 @@ class NameDataMgr:
         self.count = 0
         DEBUG_MSG("NameDataMgr:initData over.")
 
-    def InitByDB(self,used_names):
+	def InitByDB(self,used_names):
         #used_name is dict
     #--组合名字
     #	--西方,姓在后
-        for _,lastname in self.OccidentalLast.items():
+		for _,lastname in self.OccidentalLast.items():
             #女生名字
-            for _,femalname in self.OccidentalFemale.items():
-                name=femalname['name']+Spliter+lastname['name']
-                if  used_names.get(name,0)==0: #在Python中，当你使用a[key]这种方式从字典中获取一个值时，若字典中不存在这个此key时就会产生一个KeyError的错误
-                    self.occi_female.append(name)
-                    self.count = self.count + 1
-            for _,malename in self.OccidentalMale.items():
+			for _,femalname in self.OccidentalFemale.items():
+				name=femalname['name']+Spliter+lastname['name']
+				if  used_names.get(name,0)==0: #在Python中，当你使用a[key]这种方式从字典中获取一个值时，若字典中不存在这个此key时就会产生一个KeyError的错误
+					self.occi_female.append(name)
+					self.count = self.count + 1
+			for _,malename in self.OccidentalMale.items():
                 #男生名字
-                name=malename['name']+Spliter+lastname['name']
+				name=malename['name']+Spliter+lastname['name']
                 if used_names.get(name,0)==0:
                     self.occi_male.append(name)
                     self.count = self.count + 1
@@ -70,11 +70,11 @@ class NameDataMgr:
                 if used_names.get(name,0)==0:
                     self.cute.append(name)
                     self.count = self.count + 1
-   #东方,姓在前
-        for _,lastname in self.OrientalLast.items():
+					#东方,姓在前
+		for _,lastname in self.OrientalLast.items():
             #男名 
-            for _,malename in self.OrientalMale.items():
-                name=lastname['name']+Spliter+malename['name']
+			for _,malename in self.OrientalMale.items():
+				name=lastname['name']+Spliter+malename['name']
                 if used_names.get(name,0)==0:
                     self.orie_male.append(name)
                     self.count = self.count + 1
@@ -88,7 +88,7 @@ class NameDataMgr:
         if self.count==0:
             DEBUG_MSG('NameDataMgr::InitByDB: %s' %  "name space is running out.")
 
-    def GetRandom(self,t):
+def GetRandom(self,t):
      # t is list
         m=len(cute)
 
@@ -103,10 +103,10 @@ class NameDataMgr:
         else:
             return None
     
-    def GetRandomName(self,vocation):
-        if self.count==0:
-            DEBUG_MSG('NameDataMgr::GetRandomName: %s' % "name space is running out.")
-            return
+	def GetRandomName(self,vocation):
+		if self.count==0:
+			DEBUG_MSG('NameDataMgr::GetRandomName: %s' % "name space is running out.")
+			return
         ts=1
 
         name=False
@@ -150,11 +150,11 @@ class NameDataMgr:
             else:
                 DEBUG_MSG('NameDataMgr:GetRandomName is error')
         if name:
-            return [name,name_type]
+			return [name,name_type]
         else:
             DEBUG_MSG('NameDataMgr:GetRandomName:%s'%'name is none')
-    def BackToUnused(self,poolItem):# [name,ty]
-        name=poolItem[0]
+	def BackToUnused(self,poolItem):# [name,ty]
+		name=poolItem[0]
         ty=poolItem[1]
 
         if nameType.occi_female==ty:
@@ -171,29 +171,13 @@ class NameDataMgr:
             return
         self.count+=1
 
-    def random_n_names(self,n):
-        t={}
+	def random_n_names(self,n):
+		t={}
         for i in range(1,n):
             vocation=math.modf(i/2)
             name=self.GetRandomName(vocation)
             if name:
                 t[i]=name
         return t
-    def RecoverName(self,name):
-        self.cute.append(name)
-
-
-            
-
-            
-
-
-
-
-            
-
-        
-
-
-
-                
+	def RecoverName(self,name):
+		self.cute.append(name)

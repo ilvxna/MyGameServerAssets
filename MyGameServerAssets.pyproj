@@ -1,0 +1,219 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{71737680-678c-477f-8f6a-d6df8f901c79}</ProjectGuid>
+    <ProjectHome />
+    <StartupFile />
+    <SearchPath />
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <ProjectTypeGuids>{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
+    <LaunchProvider>Standard Python launcher</LaunchProvider>
+    <InterpreterId />
+    <InterpreterVersion />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
+  <PropertyGroup>
+    <VisualStudioVersion Condition=" '$(VisualStudioVersion)' == '' ">10.0</VisualStudioVersion>
+    <PtvsTargetsFile>$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets</PtvsTargetsFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="scripts\base\Account.py" />
+    <Compile Include="scripts\base\Avatar.py" />
+    <Compile Include="scripts\base\interfaces\GameObject.py" />
+    <Compile Include="scripts\base\interfaces\NPCObject.py" />
+    <Compile Include="scripts\base\interfaces\Teleport.py" />
+    <Compile Include="scripts\base\interfaces\__init__.py" />
+    <Compile Include="scripts\base\items\base\ItemBase.py" />
+    <Compile Include="scripts\base\items\base\__init__.py" />
+    <Compile Include="scripts\base\items\ItemConsume.py" />
+    <Compile Include="scripts\base\items\ItemEquip.py" />
+    <Compile Include="scripts\base\items\__init__.py" />
+    <Compile Include="scripts\base\kbemain.py" />
+    <Compile Include="scripts\base\NameMgr.py" />
+    <Compile Include="scripts\base\Space.py" />
+    <Compile Include="scripts\base\SpaceAlloc.py" />
+    <Compile Include="scripts\base\SpaceDuplicate.py" />
+    <Compile Include="scripts\base\Spaces.py" />
+    <Compile Include="scripts\base\SpawnPoint.py" />
+    <Compile Include="scripts\base\Watcher.py" />
+    <Compile Include="scripts\bots\Account.py" />
+    <Compile Include="scripts\bots\Avatar.py" />
+    <Compile Include="scripts\bots\DroppedItem.py" />
+    <Compile Include="scripts\bots\Gate.py" />
+    <Compile Include="scripts\bots\interfaces\Combat.py" />
+    <Compile Include="scripts\bots\interfaces\Dialog.py" />
+    <Compile Include="scripts\bots\interfaces\Flags.py" />
+    <Compile Include="scripts\bots\interfaces\GameObject.py" />
+    <Compile Include="scripts\bots\interfaces\Motion.py" />
+    <Compile Include="scripts\bots\interfaces\SkillBox.py" />
+    <Compile Include="scripts\bots\interfaces\Spell.py" />
+    <Compile Include="scripts\bots\interfaces\State.py" />
+    <Compile Include="scripts\bots\interfaces\Teleport.py" />
+    <Compile Include="scripts\bots\interfaces\__init__.py" />
+    <Compile Include="scripts\bots\items\base\__init__.py" />
+    <Compile Include="scripts\bots\items\__init__.py" />
+    <Compile Include="scripts\bots\kbemain.py" />
+    <Compile Include="scripts\bots\Monster.py" />
+    <Compile Include="scripts\bots\NPC.py" />
+    <Compile Include="scripts\bots\quests\base\__init__.py" />
+    <Compile Include="scripts\bots\quests\__init__.py" />
+    <Compile Include="scripts\bots\skills\base\DBuff.py" />
+    <Compile Include="scripts\bots\skills\base\SkillInitiative.py" />
+    <Compile Include="scripts\bots\skills\base\SkillPassivity.py" />
+    <Compile Include="scripts\bots\skills\base\__init__.py" />
+    <Compile Include="scripts\bots\skills\SkillAttack.py" />
+    <Compile Include="scripts\bots\skills\__init__.py" />
+    <Compile Include="scripts\cell\Avatar.py" />
+    <Compile Include="scripts\cell\dialogmgr\Dialog.py" />
+    <Compile Include="scripts\cell\dialogmgr\DialogMgr.py" />
+    <Compile Include="scripts\cell\dialogmgr\funcs\DFClose.py" />
+    <Compile Include="scripts\cell\dialogmgr\funcs\DFShop.py" />
+    <Compile Include="scripts\cell\dialogmgr\funcs\DFTeleport.py" />
+    <Compile Include="scripts\cell\dialogmgr\funcs\iDFunction.py" />
+    <Compile Include="scripts\cell\dialogmgr\funcs\__init__.py" />
+    <Compile Include="scripts\cell\dialogmgr\__init__.py" />
+    <Compile Include="scripts\cell\DroppedItem.py" />
+    <Compile Include="scripts\cell\Gate.py" />
+    <Compile Include="scripts\cell\interfaces\AI.py" />
+    <Compile Include="scripts\cell\interfaces\Combat.py" />
+    <Compile Include="scripts\cell\interfaces\CombatPropertys.py" />
+    <Compile Include="scripts\cell\interfaces\Dialog.py" />
+    <Compile Include="scripts\cell\interfaces\GameObject.py" />
+    <Compile Include="scripts\cell\interfaces\Motion.py" />
+    <Compile Include="scripts\cell\interfaces\NPCObject.py" />
+    <Compile Include="scripts\cell\interfaces\SkillBox.py" />
+    <Compile Include="scripts\cell\interfaces\Spell.py" />
+    <Compile Include="scripts\cell\interfaces\State.py" />
+    <Compile Include="scripts\cell\interfaces\Teleport.py" />
+    <Compile Include="scripts\cell\interfaces\__init__.py" />
+    <Compile Include="scripts\cell\kbemain.py" />
+    <Compile Include="scripts\cell\Monster.py" />
+    <Compile Include="scripts\cell\NPC.py" />
+    <Compile Include="scripts\cell\skills\base\DBuff.py" />
+    <Compile Include="scripts\cell\skills\base\SkillInitiative.py" />
+    <Compile Include="scripts\cell\skills\base\SkillPassivity.py" />
+    <Compile Include="scripts\cell\skills\base\__init__.py" />
+    <Compile Include="scripts\cell\skills\SkillAttack.py" />
+    <Compile Include="scripts\cell\skills\SkillHeal.py" />
+    <Compile Include="scripts\cell\skills\__init__.py" />
+    <Compile Include="scripts\cell\Space.py" />
+    <Compile Include="scripts\cell\SpaceContext.py" />
+    <Compile Include="scripts\cell\SpaceDuplicate.py" />
+    <Compile Include="scripts\cell\SpawnPoint.py" />
+    <Compile Include="scripts\common\config\action_config.py" />
+    <Compile Include="scripts\common\config\arena_config.py" />
+    <Compile Include="scripts\common\config\arenic_level.py" />
+    <Compile Include="scripts\common\config\attri_cal.py" />
+    <Compile Include="scripts\common\config\bodyEnhance_config.py" />
+    <Compile Include="scripts\common\config\channel_config.py" />
+    <Compile Include="scripts\common\config\client_text_id.py" />
+    <Compile Include="scripts\common\config\cli_entity_config.py" />
+    <Compile Include="scripts\common\config\CommonXmlConfig.py" />
+    <Compile Include="scripts\common\config\defense_pvp_config.py" />
+    <Compile Include="scripts\common\config\error_code.py" />
+    <Compile Include="scripts\common\config\event_config.py" />
+    <Compile Include="scripts\common\config\event_def.py" />
+    <Compile Include="scripts\common\config\FormularPara.py" />
+    <Compile Include="scripts\common\config\friend_config.py" />
+    <Compile Include="scripts\common\config\gm_setting_state.py" />
+    <Compile Include="scripts\common\config\guild_config.py" />
+    <Compile Include="scripts\common\config\HpBottleType.py" />
+    <Compile Include="scripts\common\config\item_data.py" />
+    <Compile Include="scripts\common\config\item_effect.py" />
+    <Compile Include="scripts\common\config\mail_config.py" />
+    <Compile Include="scripts\common\config\message_code.py" />
+    <Compile Include="scripts\common\config\mission_config.py" />
+    <Compile Include="scripts\common\config\npcData.py" />
+    <Compile Include="scripts\common\config\oblivion_config.py" />
+    <Compile Include="scripts\common\config\PriceList.py" />
+    <Compile Include="scripts\common\config\public_config.py" />
+    <Compile Include="scripts\common\config\reason_def.py" />
+    <Compile Include="scripts\common\config\role_data.py" />
+    <Compile Include="scripts\common\config\spiritData.py" />
+    <Compile Include="scripts\common\config\state_config.py" />
+    <Compile Include="scripts\common\config\timer_config.py" />
+    <Compile Include="scripts\common\config\tower_config.py" />
+    <Compile Include="scripts\common\config\vip_config.py" />
+    <Compile Include="scripts\common\config\vip_privilege.py" />
+    <Compile Include="scripts\common\config\worldboss_config.py" />
+    <Compile Include="scripts\common\config\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="scripts\common\data\ActivityData.py" />
+    <Compile Include="scripts\common\data\avatar_level_data.py" />
+    <Compile Include="scripts\common\data\banned_char.py" />
+    <Compile Include="scripts\common\data\BodyData.py" />
+    <Compile Include="scripts\common\data\ChargeData.py" />
+    <Compile Include="scripts\common\data\map_data.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="scripts\common\data\NameData.py" />
+    <Compile Include="scripts\common\Functor.py" />
+    <Compile Include="scripts\common\GlobalConst.py" />
+    <Compile Include="scripts\common\GlobalDefine.py" />
+    <Compile Include="scripts\common\Inventory.py" />
+    <Compile Include="scripts\common\KBEDebug.py" />
+    <Compile Include="scripts\common\skillbases\SCObject.py" />
+    <Compile Include="scripts\common\skillbases\SObject.py" />
+    <Compile Include="scripts\common\skillbases\__init__.py" />
+    <Compile Include="scripts\common\util\py_util.py" />
+    <Compile Include="scripts\data\d_avatar_inittab.py" />
+    <Compile Include="scripts\data\d_dialogs.py" />
+    <Compile Include="scripts\data\d_entities.py" />
+    <Compile Include="scripts\data\d_items.py" />
+    <Compile Include="scripts\data\d_shops.py" />
+    <Compile Include="scripts\data\d_skills.py" />
+    <Compile Include="scripts\data\d_spaces.py" />
+    <Compile Include="scripts\data\d_spaces_spawns.py" />
+    <Compile Include="scripts\db\kbemain.py" />
+    <Compile Include="scripts\interface\kbemain.py" />
+    <Compile Include="scripts\interface\Poller.py" />
+    <Compile Include="scripts\logger\kbemain.py" />
+    <Compile Include="scripts\login\kbemain.py" />
+    <Compile Include="scripts\server_common\SCDefine.py" />
+    <Compile Include="scripts\user_type\AVATAR_INFO.py" />
+    <Compile Include="scripts\user_type\ITEM_INFO.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="scripts\" />
+    <Folder Include="scripts\base" />
+    <Folder Include="scripts\base\interfaces" />
+    <Folder Include="scripts\base\items" />
+    <Folder Include="scripts\base\items\base" />
+    <Folder Include="scripts\bots" />
+    <Folder Include="scripts\bots\interfaces" />
+    <Folder Include="scripts\bots\items" />
+    <Folder Include="scripts\bots\items\base" />
+    <Folder Include="scripts\bots\quests" />
+    <Folder Include="scripts\bots\quests\base" />
+    <Folder Include="scripts\bots\skills" />
+    <Folder Include="scripts\bots\skills\base" />
+    <Folder Include="scripts\cell" />
+    <Folder Include="scripts\cell\dialogmgr" />
+    <Folder Include="scripts\cell\dialogmgr\funcs" />
+    <Folder Include="scripts\cell\interfaces" />
+    <Folder Include="scripts\cell\skills" />
+    <Folder Include="scripts\cell\skills\base" />
+    <Folder Include="scripts\common" />
+    <Folder Include="scripts\common\config" />
+    <Folder Include="scripts\common\data" />
+    <Folder Include="scripts\common\skillbases" />
+    <Folder Include="scripts\common\util" />
+    <Folder Include="scripts\data" />
+    <Folder Include="scripts\db" />
+    <Folder Include="scripts\interface" />
+    <Folder Include="scripts\logger" />
+    <Folder Include="scripts\login" />
+    <Folder Include="scripts\server_common" />
+    <Folder Include="scripts\user_type" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="设计思路.md" />
+  </ItemGroup>
+  <Import Project="$(PtvsTargetsFile)" Condition="Exists($(PtvsTargetsFile))" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" Condition="!Exists($(PtvsTargetsFile))" />
+</Project>

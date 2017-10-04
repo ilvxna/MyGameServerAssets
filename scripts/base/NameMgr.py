@@ -2,14 +2,14 @@ import KBEngine
 from KBEDebug import *
 from NameData import NameData
 
- g_name_mgr=NameData()
+g_name_mgr=NameData()
 
 class NameMgr(KBEngine.Base,GameObject):
     '''
     名字管理中心，需要在加载在线管理器之后加载
     '''
     def __init__(self):
-        KBEngine.Base.__init__(self)
+		KBEngine.Base.__init__(self)
 		GameObject.__init__(self)
 
         KBEngine.globalData["NamgeMgr"] = self
@@ -40,10 +40,8 @@ error则对应了“错误信息”，当命令执行有错误时，这个参数
             names[name_list[1].decode()]=id
 
         self.OnInited(name)
-
-    def OnInited(self,used_names):
-
-        DEBUG_MSG("NameMgr:OnInited.")
+	def OnInited(self,used_names):
+		DEBUG_MSG("NameMgr:OnInited.")
 
         if not used_names:
             used_names={}
@@ -52,7 +50,7 @@ error则对应了“错误信息”，当命令执行有错误时，这个参数
 
         rand_names=self.g_name_mgr.random_n_names(10)
 
-    def GetRandomName(self,account, vocation, accountMailbox):
+	def GetRandomName(self,account, vocation, accountMailbox):
         #usingPool is list，所以先把usingpool拆开，检查每一个dict,不要有姓名相同的
         #重复点击
         for k,name_dict in enumerate(self.usingPool):
@@ -60,7 +58,12 @@ error则对应了“错误信息”，当命令执行有错误时，这个参数
                 g_name_mgr.BackToUnsed([name,nam_dic[name]])
 
         [name,name_type]=g_name_mgr.GetRandomName(vocation)
+
+        if not name:
+            ERROR_MSG("NameMgr::GetRandomName :run out of name data.")
         
+        self.usingPool.append(dict(name=name_type,))
+
 
 
 

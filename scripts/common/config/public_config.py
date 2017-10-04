@@ -466,8 +466,8 @@ ITEM_DATA_CLIENT_UPDATE = 2,  #--当前道具流为更新2
 ITEM_DATA_CLIENT_ADDNEW = 3,  #--当前道具流为增加3
 
 #--湮灭之门
-OBLIVION_GATE_TO_MAP    = {[1] = 30001, [2] = 30002},
-OBLIVION_MAP_TO_GATE    = {[30001] = 1, [30002] = 2},
+#OBLIVION_GATE_TO_MAP    = {[1] = 30001, [2] = 30002},
+#OBLIVION_MAP_TO_GATE    = {[30001] = 1, [30002] = 2},
 OBLIVION_CLOSED_TIME    = 2 * 60 * 60,    #--副本结束时间，单位：秒
 OBLIVION_ENTER_TIME     = 60 * 60,        #--副本进入CD时间，单位：秒
 

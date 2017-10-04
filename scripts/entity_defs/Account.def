@@ -9,6 +9,29 @@
             <Type>          MAILBOX             </Type>
             <Flags>         BASE                </Flags>
         </activeAvatar>
+        <!-- 玩家状态 -->
+          <avatarState>
+        <Type> UINT8 </Type>
+        <Flags> BASE </Flags>
+    </avatarState>
+    <activeAvatarId>
+      <Type> UINT32 </Type>
+      <Flags> BASE_AND_CLIENT </Flags>
+      <Default> 0 </Default>
+    </activeAvatarId>
+
+    <!--avatar退出标记-->
+    <avatarQuitFlag>
+      <Type> UINT8 </Type>
+      <Flags> BASE </Flags>
+      <Default> 0 </Default>
+    </avatarQuitFlag>
+    <!-- 帐号状态 -->
+    <state>
+      <Type> UINT8 </Type>
+      <Flags> BASE </Flags>
+      <Default> 0 </Default>
+    </state>
 	</Properties>
 
 	<ClientMethods>
@@ -20,10 +43,21 @@
            <Arg>UINT8</Arg>
            <Arg>AVATAR_INFO</Arg>
         </onCreateAvatarResult>
-
+    
+    <OnCreateCharacterResp>
+      <Arg>  UINT8 </Arg>
+      <!-- error id -->
+      <Arg>  UINT64 </Arg>
+      <!-- character id -->
+    </OnCreateCharacterResp>
         <onRemoveAvatar>
             <Arg>   DBID        </Arg>
         </onRemoveAvatar>
+        <OnLoginResp>
+      <Arg>  UINT8 </Arg>
+      <!-- error id -->
+    </OnLoginResp>
+
 	</ClientMethods>
 
 	<BaseMethods>

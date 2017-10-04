@@ -10,7 +10,15 @@ from AVATAR_INFO import TAvatarInfo
 from AVATAR_INFO import TAvatarInfoList
 from KBEDebug import *
 import d_avatar_inittab
-
+#import public_config
+from config import public_config
+#import error_code
+from config import error_code
+#帐号状态
+ACCOUNT_STATE_INIT       = 0          #初始状态
+ACCOUNT_STATE_CREATING   = 1         #帐号正在创建角色、等待回调的状态
+ACCOUNT_STATE_DESTORYING = 2          #角色正在删除状态
+ACCOUNT_STATE_LOGINING   = 3          #帐号正在登录角色、等待回调的状态
 class Account(KBEngine.Proxy):
 	"""
 	账号实体
@@ -82,7 +90,52 @@ class Account(KBEngine.Proxy):
 			avatar.writeToDB(self._onAvatarSaved)
 		
 		DEBUG_MSG("Account[%i].reqCreateAvatar:%s. spaceUType=%i, spawnPos=%s.\n" % (self.id, name, avatar.cellData["spaceUType"], spaceData.get("spawnPos", (0,0,0))))
-		
+
+	def CreateCharacterReq(self,name, gender, vocation):
+
+		#正在创建角色中
+		if self.avatarState == public_config.CHARACTER_CREATING :
+			return
+		#如果刚刚创建了，但是又创建
+
+		#检查是否超过角色可创建数量
+
+		#角色名字检查
+		#长度
+		if len(name)<2:
+			self.client.OnCreateCharacterResp(error_code.ERR_CREATE_AVATAR_NAME_TOO_SHORT, 0)
+		elif len(name)>20:
+			self.client.OnCreateCharacterResp(error_code.ERR_CREATE_AVATAR_NAME_TOO_LONG, 0)
+
+		#检查特护字符，客户端进行了基本的检查
+
+		#检查敏感字
+
+		#检查职业和性别
+		if gender != public_config.GENDER_MALE and gender != public_config.GENDER_FEMALE:
+			self.client.OnCreateCharacterResp(error_code.ERR_CREATE_AVATAR_GENDER, 0)
+			return
+		if vocation < public_config.VOC_MIN or vocation > public_config.VOC_MAX:
+			self.client.OnCreateCharacterResp(error_code.ERR_CREATE_AVATAR_VOCATION, 0)
+			return
+		#设置帐号在创建角色中
+		self.avatarState = public_config.CHARACTER_CREATING
+   		#名字检查,考虑使用userMgr回调检查姓名的合法性
+		props = {
+			"name"				: name,
+			"vocation"			: vocation,
+			"level"				: 1,
+			#----------cell---------
+			"roleTypeCell"      : vocation,
+			"sex":gender
+		}
+		avatar = KBEngine.createBaseLocally("Avatar",props)
+		self.state = ACCOUNT_STATE_CREATING
+
+		if avatar:
+			avatar.writeToDB(self._onAvatarWrited)
+		DEBUG_MSG("Account[%i].reqCreateAvatar:%s. spawnPos=%s.\n" % (self.id, name))
+
 	def reqRemoveAvatar(self, name):
 		"""
 		exposed.
@@ -118,9 +171,33 @@ class Account(KBEngine.Proxy):
 		else:
 			self.giveClientTo(self.activeAvatar)
 
-	#--------------------------------------------------------------------------------------------
+	def StartGameReq(self,characterDBID):
+		'''
+		exposed.
+		客户端选择某个角色进行游戏
+		'''
+		INFO_MSG('Account::StarteGameReq:(%i)  avatar state: %s, %i' % (self.id,  avatar.cellData["name"], characterDBID))
+		#正在创建游戏角色中
+		if self.avatarState == public_config.CHARACTER_CREATING:
+			return
+
+		if characterDbid < 1 :
+			self.client.OnLoginResp(error_code.ERR_LOGIN_AVATAR_BAD)
+			return
+		
+		if self.activeAvatar is None:
+			if dbid in self.chatacters:
+				KBEngine.createBaseFromDBID("Avatar", dbid, self.__onAvatarActivated)
+			else:
+				ERROR_MSG("Account[%i]::StartGameReq: not found dbid(%i)" % (self.id, dbid))
+		else:
+			self.giveClientTo(self.activeAvatar)
+			
+
+		
+	#-----------------------------------------------------------------------
 	#                              Callbacks
-	#--------------------------------------------------------------------------------------------
+	#-----------------------------------------------------------------------
 
 	def onEntitiesEnabled(self):
 		"""
@@ -217,7 +294,34 @@ class Account(KBEngine.Proxy):
 		avatar.accountEntity = self
 		self.activeAvatar = avatar
 		self.giveClientTo(avatar)
+	def _onAvatarActivated(self, baseRef, dbid, wasActive):
+		"""
+		选择角色进入游戏时被调用
+		"""
+		if wasActive:
+			ERROR_MSG("Account::__onAvatarCreated:(%i): this character is in world now!" % (self.id))
+			return
+		if baseRef is None:
+			ERROR_MSG("Account::__onAvatarCreated:(%i): the character you wanted to created is not exist!" % (self.id))
+			return
+			
+		avatar = KBEngine.entities.get(baseRef.id)
+		if avatar is None:
+			ERROR_MSG("Account::__onAvatarCreated:(%i): when character was created, it died as well!" % (self.id))
+			return
 		
+		if self.isDestroyed:
+			ERROR_MSG("Account::__onAvatarCreated:(%i): i dead, will the destroy of Avatar!" % (self.id))
+			avatar.destroy()
+			return
+			
+		info = self.characters[dbid]
+		profesional = info[2]
+
+		avatar.accountEntity = self
+		self.activeAvatar = avatar
+		self.giveClientTo(avatar)
+
 	def _onAvatarSaved(self, success, avatar):
 		"""
 		新建角色写入数据库回调
@@ -248,4 +352,37 @@ class Account(KBEngine.Proxy):
 		
 		if self.client:
 			self.client.onCreateAvatarResult(0, avatarinfo)
+
+	def _onAcatarWrited(self,success,avatar):
+		"""
+		新建角色写入数据库回调
+		"""
+		INFO_MSG("Account::_onAvatarWrited:(%i) create avatr state:%i,%s,%i"%(self.id,success,avatar.cellData['name'],avatar.databaseID))
+		#如果此时账号已经销毁， 角色已经无法被记录则我们清除这个角色
+		if self.isDestroyed:
+			if avatar:
+				avatr.destroy(True)
+				return
+		#fixed_dict，先扩展，再修改
+		avatarinfo = TAvatarInfo()
+		avatarinfo.extend([0, "", 0, 0])
+
+		if success:
+			avatarinfo[0]=avatar.databaseID
+			avartarinfo[1]=avatar.cellData['name']
+			avatarinfo[2]=avatar.vocation
+			avatarinfo[3]=1
+
+			self.cahracters[avatar.databaseID]=avatarinfo
+
+			self.writeToDB()
+		else:
+			avatarinfo[1]='创建失败'
+		
+		if self.client:
+			self.client.OnCreateCharacterResp(0, avatar.databaseID)
+
+
+		
+
 
