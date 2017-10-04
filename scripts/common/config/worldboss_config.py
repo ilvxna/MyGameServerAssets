@@ -31,7 +31,7 @@ worldboss_config = dict(
 	SHOW_TOP_N = 5, #--排行榜显示top几位
 	WDAY_REFRESH = 2, #--周一刷新, 1代表星期天
 	HOUR_WEEK_REFRESH = 0, #--周排名刷新时间（小时）
-	#--local HOUR_WEEK_RANK_REWARD
+	#--HOUR_WEEK_RANK_REWARD
 	SEC_PER_WEEK = 604800, #--
 
 	SAVE_PER_TIME = 300, #--每次保存300个玩家数据

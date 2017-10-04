@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<record>
+		<id_i>1</id_i>
+		<OPEN_LV_i>19</OPEN_LV_i>
+	</record>
+	<record>
+		<id_i>2</id_i>
+		<WEAK_FOE_PICK_PARAM_l>90,50,50,10</WEAK_FOE_PICK_PARAM_l>
+	</record>
+	<record>
+		<id_i>3</id_i>
+		<WEAK_FOE_PICK_PARAM_l>150,90,90,50,50,10</WEAK_FOE_PICK_PARAM_l>
+	</record>
+	<record>
+		<id_i>4</id_i>
+		<ENEMY_PICK_PARAM_l>150,50</ENEMY_PICK_PARAM_l>
+	</record>
+	<record>
+		<id_i>5</id_i>
+		<FOES_NUM_FOR_RAND_i>15</FOES_NUM_FOR_RAND_i>
+	</record>
+</root>

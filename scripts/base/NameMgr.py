@@ -1,8 +1,9 @@
 import KBEngine
 from KBEDebug import *
-from NameData import NameData
 
-g_name_mgr=NameData()
+from NameData import NameDataMgr
+
+g_name_mgr=NameDataMgr()
 
 class NameMgr(KBEngine.Base,GameObject):
     '''
@@ -12,13 +13,13 @@ class NameMgr(KBEngine.Base,GameObject):
 		KBEngine.Base.__init__(self)
 		GameObject.__init__(self)
 
-        KBEngine.globalData["NamgeMgr"] = self
-        
-        g_name_mgr.initData()
+		KBEngine.globalData["NamgeMgr"] = self
 
-        sql="SELECT id,sm_name FROM tbl_Avatar"
+		g_name_mgr.initData()
+
+		sql="SELECT id,sm_name FROM tbl_Avatar"
         #对于方案为MySQL数据库它是一个SQL查询语句。
-        KBEngine.executeRawDatabaseCommand(sql,self._onAvatarSelectResp)
+		KBEngine.executeRawDatabaseCommand(sql,self._onAvatarSelectResp)
 
     def _onAvatarSelectResp(self,result, rows, insertid, error):
         '''
@@ -53,9 +54,9 @@ error则对应了“错误信息”，当命令执行有错误时，这个参数
 	def GetRandomName(self,account, vocation, accountMailbox):
         #usingPool is list，所以先把usingpool拆开，检查每一个dict,不要有姓名相同的
         #重复点击
-        for k,name_dict in enumerate(self.usingPool):
-            if name_dict[account]:
-                g_name_mgr.BackToUnsed([name,nam_dic[name]])
+		for k,name_dict in enumerate(self.usingPool):
+			if name_dict[account]:
+				g_name_mgr.BackToUnsed([name,nam_dic[name]])
 
         [name,name_type]=g_name_mgr.GetRandomName(vocation)
 
@@ -63,17 +64,4 @@ error则对应了“错误信息”，当命令执行有错误时，这个参数
             ERROR_MSG("NameMgr::GetRandomName :run out of name data.")
         
         self.usingPool.append(dict(name=name_type,))
-
-
-
-
-        
-        
-
-   
-
-
-        
-
-
 

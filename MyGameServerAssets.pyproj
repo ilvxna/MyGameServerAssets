@@ -33,6 +33,9 @@
     <Compile Include="scripts\base\items\ItemEquip.py" />
     <Compile Include="scripts\base\items\__init__.py" />
     <Compile Include="scripts\base\kbemain.py" />
+    <Compile Include="scripts\base\MapMgr.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="scripts\base\NameMgr.py" />
     <Compile Include="scripts\base\Space.py" />
     <Compile Include="scripts\base\SpaceAlloc.py" />
@@ -152,6 +155,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="scripts\common\data\NameData.py" />
+    <Compile Include="scripts\common\data\_init_.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="scripts\common\Functor.py" />
     <Compile Include="scripts\common\GlobalConst.py" />
     <Compile Include="scripts\common\GlobalDefine.py" />
@@ -161,6 +167,9 @@
     <Compile Include="scripts\common\skillbases\SObject.py" />
     <Compile Include="scripts\common\skillbases\__init__.py" />
     <Compile Include="scripts\common\util\py_util.py" />
+    <Compile Include="scripts\common\util\_init_.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="scripts\data\d_avatar_inittab.py" />
     <Compile Include="scripts\data\d_dialogs.py" />
     <Compile Include="scripts\data\d_entities.py" />
@@ -205,6 +214,8 @@
     <Folder Include="scripts\common\util" />
     <Folder Include="scripts\data" />
     <Folder Include="scripts\db" />
+    <Folder Include="scripts\entity_defs\" />
+    <Folder Include="scripts\entity_defs\interfaces\" />
     <Folder Include="scripts\interface" />
     <Folder Include="scripts\logger" />
     <Folder Include="scripts\login" />
@@ -212,6 +223,34 @@
     <Folder Include="scripts\user_type" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="scripts\entity_defs\Account.def" />
+    <Content Include="scripts\entity_defs\alias.xml" />
+    <Content Include="scripts\entity_defs\Avatar.def" />
+    <Content Include="scripts\entity_defs\DroppedItem.def" />
+    <Content Include="scripts\entity_defs\Gate.def" />
+    <Content Include="scripts\entity_defs\interfaces\AI.def" />
+    <Content Include="scripts\entity_defs\interfaces\AvatarPropertys.def" />
+    <Content Include="scripts\entity_defs\interfaces\Combat.def" />
+    <Content Include="scripts\entity_defs\interfaces\CombatPropertys.def" />
+    <Content Include="scripts\entity_defs\interfaces\Dialog.def" />
+    <Content Include="scripts\entity_defs\interfaces\GameObject.def" />
+    <Content Include="scripts\entity_defs\interfaces\Motion.def" />
+    <Content Include="scripts\entity_defs\interfaces\NPCObject.def" />
+    <Content Include="scripts\entity_defs\interfaces\SkillBox.def" />
+    <Content Include="scripts\entity_defs\interfaces\Spell.def" />
+    <Content Include="scripts\entity_defs\interfaces\State.def" />
+    <Content Include="scripts\entity_defs\interfaces\Teleport.def" />
+    <Content Include="scripts\entity_defs\MapMgr.def">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="scripts\entity_defs\Monster.def" />
+    <Content Include="scripts\entity_defs\NameMgr.def" />
+    <Content Include="scripts\entity_defs\NPC.def" />
+    <Content Include="scripts\entity_defs\Space.def" />
+    <Content Include="scripts\entity_defs\SpaceDuplicate.def" />
+    <Content Include="scripts\entity_defs\Spaces.def" />
+    <Content Include="scripts\entity_defs\SpawnPoint.def" />
+    <Content Include="scripts\entity_defs\State.def" />
     <Content Include="设计思路.md" />
   </ItemGroup>
   <Import Project="$(PtvsTargetsFile)" Condition="Exists($(PtvsTargetsFile))" />

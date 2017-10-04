@@ -10,9 +10,9 @@ from AVATAR_INFO import TAvatarInfo
 from AVATAR_INFO import TAvatarInfoList
 from KBEDebug import *
 import d_avatar_inittab
-#import public_config
+
 from config import public_config
-#import error_code
+
 from config import error_code
 #帐号状态
 ACCOUNT_STATE_INIT       = 0          #初始状态
