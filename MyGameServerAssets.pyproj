@@ -40,6 +40,9 @@
     <Compile Include="scripts\base\Space.py" />
     <Compile Include="scripts\base\SpaceAlloc.py" />
     <Compile Include="scripts\base\SpaceDuplicate.py" />
+    <Compile Include="scripts\base\SpaceLoader.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="scripts\base\Spaces.py" />
     <Compile Include="scripts\base\SpawnPoint.py" />
     <Compile Include="scripts\base\Watcher.py" />
@@ -248,6 +251,9 @@
     <Content Include="scripts\entity_defs\NPC.def" />
     <Content Include="scripts\entity_defs\Space.def" />
     <Content Include="scripts\entity_defs\SpaceDuplicate.def" />
+    <Content Include="scripts\entity_defs\SpaceLoader.def">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="scripts\entity_defs\Spaces.def" />
     <Content Include="scripts\entity_defs\SpawnPoint.def" />
     <Content Include="scripts\entity_defs\State.def" />

@@ -1,6 +1,7 @@
+# -*- coding: utf-8 -*-
 import KBEngine
 from KBEDebug import *
-
+from interfaces.GameObject import GameObject
 from NameData import NameDataMgr
 
 g_name_mgr=NameDataMgr()
