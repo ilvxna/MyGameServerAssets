@@ -60,7 +60,7 @@ class MapMgr(KBEngine.Base,GameObject):
 
 			self.BusySpecialMapPool[sceneId] = {}
 
-		KBEngine.globalData["NamgeMgr"] = self
+		KBEngine.globalData["MapMgr"] = self
 
 	#加载所有场景管理器
 	def LoadAllSpace(self):
@@ -188,7 +188,7 @@ class MapMgr(KBEngine.Base,GameObject):
 
                   #找到一条分线，则分配该分线号
 						if count < mapInfo['maxPlayerNum']:
-                    
+
                        #成功进入一条分线
 							spaceLoaderMbs = self.GetSpaceLoaderMb(map_id, imap)
 							'''
@@ -397,12 +397,6 @@ class MapMgr(KBEngine.Base,GameObject):
 				else:
 					#无法找到可进入副本分线
 					ERROR_MSG("MapMgr:SelectMapReq -2:map_id=%i;imap=%i;count=%i;maxPlayerNum=%i", map_id, imap, count, mapInfo['maxPlayerNum'])
-
-
-				
-
-
-
 
 	def CheckEnterResp(self,result,playerMb,map_id,line,dbid,name):
 

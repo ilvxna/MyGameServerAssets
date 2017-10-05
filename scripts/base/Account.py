@@ -177,6 +177,7 @@ class Account(KBEngine.Proxy):
 		客户端选择某个角色进行游戏
 		'''
 		INFO_MSG('Account::StarteGameReq:(%i)  avatar state: %s, %i' % (self.id,  avatar.cellData["name"], characterDBID))
+
 		#正在创建游戏角色中
 		if self.avatarState == public_config.CHARACTER_CREATING:
 			return
@@ -186,15 +187,19 @@ class Account(KBEngine.Proxy):
 			return
 		
 		if self.activeAvatar is None:
-			if dbid in self.chatacters:
-				KBEngine.createBaseFromDBID("Avatar", dbid, self.__onAvatarActivated)
+			if characterDBID in self.chatacters:
+				KBEngine.createBaseFromDBID("Avatar", characterDBID, self.__onAvatarActivated)
 			else:
-				ERROR_MSG("Account[%i]::StartGameReq: not found dbid(%i)" % (self.id, dbid))
+				ERROR_MSG("Account[%i]::StartGameReq: not found dbid(%i)" % (self.id, characterDBID))
+
 		else:
 			self.giveClientTo(self.activeAvatar)
 			
+			KBEngine.globalData["MapMgr"].SelectMapReq( self.activeAvatar,  10004, 0, characterDBID, self.name, {})
 
-		
+	#
+	def SelectMapResp(map_id, imap_id, spBaseMb, spCellMb, dbid, params):
+		pass	
 	#-----------------------------------------------------------------------
 	#                              Callbacks
 	#-----------------------------------------------------------------------

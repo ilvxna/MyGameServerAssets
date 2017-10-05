@@ -1,10 +1,12 @@
 <root>
-	<Properties>
+	<Properties> 
+    <!--角色-->
 		<characters>
 			<Type> AVATAR_INFO_LIST </Type>
 			<Flags> BASE </Flags>
 			<Persistent> true </Persistent>
 		</characters>
+    <!--选中的角色-->
         <activeAvatar>
             <Type>          MAILBOX             </Type>
             <Flags>         BASE                </Flags>
@@ -14,6 +16,7 @@
         <Type> UINT8 </Type>
         <Flags> BASE </Flags>
     </avatarState>
+    <!--角色ID-->
     <activeAvatarId>
       <Type> UINT32 </Type>
       <Flags> BASE_AND_CLIENT </Flags>
@@ -32,8 +35,47 @@
       <Flags> BASE </Flags>
       <Default> 0 </Default>
     </state>
-	</Properties>
+	  <!--姓名-->
+    <name>
+      <Type> STRING </Type>
+      <Flags> BASE_AND_CLIENT </Flags>
+      <Persistent> TRUE </Persistent>
+    </name>
+  
+  <!--平台帐号--><!--平台帐号-->
+    <platAccount>
+      <Type> STRING </Type>
+      <Flags> BASE </Flags>
+      <Persistent> TRUE </Persistent>
+    </platAccount>
+    <!--帐户在本游戏服务器创建时间-->
+    <createTime>
+      <Type> UINT32 </Type>
+      <Flags> BASE </Flags>
+      <Persistent> TRUE </Persistent>
+    </createTime>
+    <!-- 帐号状态 -->
+    <state>
+      <Type> UINT8 </Type>
+      <Flags> BASE </Flags>
+      <Default> 0 </Default>
+    </state>
+    
+     <!--手机登陆信息-->
+    <cellphone>
+      <Type> STRING </Type>
+      <Flags> BASE </Flags>
+      <Persistent> TRUE </Persistent>
+    </cellphone>
 
+    <!-- 记录帐号的进度 -->
+    <progress>
+        <Type> UINT16 </Type>
+        <Flags> BASE </Flags>
+        <Default> 0 </Default>
+        <Persistent> TRUE </Persistent>
+    </progress>
+</Properties>
 	<ClientMethods>
         <onReqAvatarList>
             <Arg>   AVATAR_INFO_LIST   </Arg>
@@ -77,6 +119,23 @@
             <Exposed/>
             <Arg>   DBID    </Arg>  <!-- dbid -->
         </selectAvatarGame>
+    
+     <SelectMapResp>
+      <Arg> UINT16 </Arg>    <!-- 玩家的实际地图ID -->
+      <Arg> UINT16 </Arg>    <!-- 玩家的实际地图分线ID -->
+      <Arg> LUA_TABLE </Arg> <!-- 选中的sp的base的mb -->
+      <Arg> LUA_TABLE </Arg> <!-- 选中的sp的cell的mb -->
+      <Arg> UINT64 </Arg>    <!-- 玩家的dbid -->
+      <Arg> LUA_TABLE </Arg> <!-- 玩家选择分线时穿进来的参数，此时再返回给他 -->
+    </SelectMapResp>
+
+    <SelectMapFailResp>
+      <!-- 玩家的实际地图ID -->
+      <Arg> UINT16 </Arg>
+      <!-- 玩家的实际地图分线ID -->
+      <Arg> UINT32 </Arg>
+    </SelectMapFailResp>
+    
 	</BaseMethods>
 
 	<CellMethods>
