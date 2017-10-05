@@ -415,6 +415,18 @@ class MapMgr(KBEngine.Base,GameObject):
 
 					playerMb.SelectMapFailResp(map_id, line)
 
+				spaceLoaderMbs = self.GetSpaceLoaderMb(map_id, line)
+
+				playerMb.SelectMapResp(10004, 1, spaceLoaderMbs,  dbid, {})
+
+			else:
+				#该打开的副本属于该玩家，则玩家重新进入副本
+				spaceLoaderMbs = self.GetSpaceLoaderMb(map_id, line)
+
+				playerMb.SelectMapResp(map_id, line, spaceLoaderMbs,  dbid, {})
+
+
+
 
 
 				
