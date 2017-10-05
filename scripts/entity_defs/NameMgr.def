@@ -5,12 +5,12 @@
    
     <!--
     大概是这样一个列表字典
-       = {“values": [
+       = { "values": [
               {"itemID" : 1, itemCount : 12},
-              {"itemID" : 2, itemCount : 11},
-              ...
-              ...
-         ]}
+              {"itemID" : 2, itemCount : 11}, ] 
+         }
+        
+        
          服务器端就是一个name字典的list
          -->
     <usingPool>

@@ -39,6 +39,7 @@ class MapDataMgr:
 				return tmp[0]
 
 		return map_id
+
 	#获取配置表的地图配置表的数据
 	def getMapCfgData(self,map_id):
 		return self._map_data[map_id]

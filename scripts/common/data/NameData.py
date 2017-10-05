@@ -52,7 +52,7 @@ class NameDataMgr:
             #女生名字
 			for _,femalname in self.OccidentalFemale.items():
 				name=femalname['name']+Spliter+lastname['name']
-				if  used_names.get(name,0)==0: #在Python中，当你使用a[key]这种方式从字典中获取一个值时，若字典中不存在这个此key时就会产生一个KeyError的错误
+				if  used_names.get(name,0)==0: #TODO 在Python中，当你使用a[key]这种方式从字典中获取一个值时，若字典中不存在这个此key时就会产生一个KeyError的错误
 					self.occi_female.append(name)
 					self.count = self.count + 1
 			for _,malename in self.OccidentalMale.items():
@@ -61,7 +61,7 @@ class NameDataMgr:
                 if used_names.get(name,0)==0:
                     self.occi_male.append(name)
                     self.count = self.count + 1
-#可爱，女性名字，姓在前
+			#可爱，女性名字，姓在前
         for _,lastname in self.CuteLast.items():
             #姓
             for _,firstname in self.CuteFirst.items():
@@ -85,6 +85,7 @@ class NameDataMgr:
                     self.orie_female.append(name)
                     self.count = self.count + 1
         DEBUG_MSG('NameDataMgr::InitByDB: %s' % self.count)
+
         if self.count==0:
             DEBUG_MSG('NameDataMgr::InitByDB: %s' %  "name space is running out.")
 

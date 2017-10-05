@@ -7,6 +7,7 @@ from KBEDebug import *
 import xml.etree.ElementTree as ET
 _ONEDAY_SECONDS = 24*60*60
 #生成一个日期的整数，默认以凌晨4:00为界
+
 #ToDo 时间time.struct_time有问题
 def get_number_date(from_time,from_clock):
 	now_time=from_time or time.time()

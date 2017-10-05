@@ -41,7 +41,7 @@ class SpaceAlloc:
 											"context" : context,	\
 											}, \
 											Functor.Functor(self.onSpaceCreatedCB, spaceKey))
-											
+		#space是baseMailbox									
 	def onSpaceCreatedCB(self, spaceKey, space):
 		"""
 		一个space创建好后的回调
